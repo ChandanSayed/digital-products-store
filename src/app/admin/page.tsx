@@ -41,8 +41,10 @@ const page = async () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      <DashboardCard title="Sale" subtitle={`${formatNumber(sellData.amount)} orders`} body={formatCurrency(sellData.numberOfSales)} />
+      <DashboardCard title="Sale" subtitle={`${formatNumber(sellData.numberOfSales)} orders`} body={formatCurrency(sellData.amount)} />
+
       <DashboardCard title="Customer" subtitle={`${formatNumber(userData.averageValuePerUser)} orders`} body={formatCurrency(userData.userCount)} />
+
       <DashboardCard title="Active Product" subtitle={`${formatNumber(productData.inactiveCount)} inactive`} body={formatNumber(productData.activeCount)} />
     </div>
   );
