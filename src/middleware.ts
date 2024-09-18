@@ -5,13 +5,14 @@ export async function middleware(req: NextRequest) {
   if ((await isAuthenticated(req)) === false) {
     return new NextResponse("Unauthorized", {
       status: 401,
-      headers: { "WWW-Authenticate": "Basic" }
+      headers: { "WWW-Authenticate": "Basic" },
     });
   }
 }
 
 async function isAuthenticated(req: NextRequest) {
-  const authHeader = req.headers.get("authorization") || req.headers.get("Authorization");
+  const authHeader =
+    req.headers.get("authorization") || req.headers.get("Authorization");
 
   if (authHeader == null) return false;
 
@@ -21,10 +22,13 @@ async function isAuthenticated(req: NextRequest) {
 
   return (
     username === process.env.ADMIN_USERNAME &&
-    (await isValidPassword(password, process.env.HASHED_ADMIN_PASSWORD as string))
+    (await isValidPassword(
+      password,
+      process.env.HASHED_ADMIN_PASSWORD as string
+    ))
   );
 }
 
 export const config = {
-  matcher: "/admin/:path*"
+  matcher: "/admin/:path*",
 };
